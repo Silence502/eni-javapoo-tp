@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class maximo_1 {
@@ -72,8 +73,7 @@ public class maximo_1 {
 	 */
 	private static void affichageTirage(String mot) {
 		System.out.printf("voici le résultat du tirage%n"
-				+ "%s :%n"
-				+ "Votre proposition : ", motMelange(mot));
+				+ "%s %n", motMelange(mot));
 	}
 	
 	/**
@@ -95,24 +95,40 @@ public class maximo_1 {
 		String motMelange = motMelange(tirage);
 		String saisie = "";
 		affichageTirage(motMelange);
+		char lettre1 = 0;
+		char lettre2 = 0;
+		boolean test = true;
 		
 		Scanner s = new Scanner(System.in);
-		
-		int test = 0;
 
 		do {
+			System.out.print("Votre proposition : ");
 			saisie = s.nextLine();
-			if (saisie.length() != tirage.length()) {
-				test = 0;
+			
+			while (saisie.length() != tirage.length()) {
 				System.out.printf("Le nombre de lettres ne correspond pas au tirage.%n"
 						+ "Réessayez : ");
-			} else {
-				test = 1;
+				saisie = s.nextLine();
 			}
 			
-		} while (test == 0);
-		s.close();
+			int i = 0;
+			while (i < saisie.length()) {
+				int j = 0;
+				lettre1 = saisie.charAt(i);
+				i++;
+				while (lettre1 != lettre2 && j != tirage.length()) {
+					lettre2 = tirage.charAt(j);
+					j++;
+					if (lettre1 != lettre2 && j == tirage.length()) {
+						System.out.println(lettre1 + " n'est pas dans le mot.");
+						test = false;
+					}
+				}
+			}
+		} while (test == false);
 		
+		s.close();
 		controleSaisie(tirage, saisie);
+		
 	}
 }
