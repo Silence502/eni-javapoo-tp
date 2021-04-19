@@ -23,9 +23,14 @@ public class maximo_1 {
 			--> mot présent dans le dictionnaire
 			|O| Le mot tiré au sort est dévoilé au joueur.*/
 		
-		String mot = tirageDuMot();
-		System.out.println(mot);
-		System.out.println(motMelange(mot));
+		String tirage = tirageDuMot();
+		String motMelange = motMelange(tirage);
+		affichageTirage(motMelange);
+		
+		Scanner s = new Scanner(System.in);
+		String saisie = s.nextLine();
+		
+		controleSaisie(tirage, saisie);
 
 	};
 	
@@ -51,12 +56,9 @@ public class maximo_1 {
 		} catch (IOException e) {
 			System.out.println("Raté");
 		}
-		
 		motRandom = dicoTab[randomTab];
-		
 		return motRandom;
 	}
-	
 
 	/**
 	 * Fonction qui récupère le mot tiré en random du dico
@@ -64,7 +66,7 @@ public class maximo_1 {
 	 * @param mot
 	 * @return
 	 */
-	public static String motMelange(String mot) {
+	private static String motMelange(String mot) {
 		List<String> lettres = Arrays.asList(mot.split(""));
 		Collections.shuffle(lettres);
 		String test = "";
@@ -75,4 +77,26 @@ public class maximo_1 {
 		return test;
 	}
 	
+	/**
+	 * Affichage du tirage.
+	 */
+	private static void affichageTirage(String mot) {
+		System.out.printf("voici le résultat du tirage%n"
+				+ "%s :%n"
+				+ "Votre proposition : ", motMelange(mot));
+	}
+	
+	/**
+	 * Fonction de comaparaison entre la saisie du joueur
+	 * et le mot du tirage.
+	 * @param mot
+	 * @param saisie
+	 */
+	private static void controleSaisie(String mot, String saisie) {
+		if (mot.equals(saisie)) {
+			System.out.printf("%s est une bonne réponse !", saisie);
+		} else {
+			System.out.printf("%s est une mauvaise réponse. Le mot était : %s", saisie, mot);
+		}
+	}
 }
