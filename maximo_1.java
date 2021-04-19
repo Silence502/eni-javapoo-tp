@@ -82,26 +82,15 @@ public class maximo_1 {
 	 * @param mot
 	 * @param saisie
 	 */
-	private static void controleSaisie(String mot, String saisie) {
-		if (mot.equals(saisie)) {
-			System.out.printf("%s est une bonne réponse !", saisie);
-		} else {
-			System.out.printf("%s est une mauvaise réponse. Le mot était : %s", saisie, mot);
-		}
-	}
-	
-	private static void jeu() {
-		String tirage = tirageDuMot();
-		String motMelange = motMelange(tirage);
-		String saisie = "";
-		affichageTirage(motMelange);
+	private static void controleSaisie(String tirage, String saisie) {
 		char lettre1 = 0;
 		char lettre2 = 0;
-		boolean test = true;
+		boolean test;
 		
 		Scanner s = new Scanner(System.in);
-
+		
 		do {
+			test = true;
 			System.out.print("Votre proposition : ");
 			saisie = s.nextLine();
 			
@@ -127,8 +116,22 @@ public class maximo_1 {
 			}
 		} while (test == false);
 		
+		if (tirage.equals(saisie)) {
+			System.out.printf("%s est une bonne réponse !", saisie);
+		} else {
+			System.out.printf("%s est une mauvaise réponse. Le mot était : %s", saisie, tirage);
+		}
 		s.close();
+	}
+	
+	/**
+	 * Corps du jeu avec saisie et appel des fonctions et procédures.
+	 */
+	private static void jeu() {
+		String tirage = tirageDuMot();
+		String motMelange = motMelange(tirage);
+		String saisie = "";
+		affichageTirage(motMelange);
 		controleSaisie(tirage, saisie);
-		
 	}
 }
