@@ -16,25 +16,15 @@ public class maximo_1 {
 			programme :
 			|X| Un mot est tiré au sort dans le dictionnaire
 			|X| Les lettres le constituant sont mélangées aléatoirement
-			|O| Le tirage est affiché au joueur
-			|O| Le joueur saisit sa proposition
-			|O| La proposition est vérifiée :
+			|X| Le tirage est affiché au joueur
+			|X| Le joueur saisit sa proposition
+			|X| La proposition est vérifiée :
 			--> uniquement les lettres tirées ont été utilisées
 			--> mot présent dans le dictionnaire
-			|O| Le mot tiré au sort est dévoilé au joueur.*/
+			|X| Le mot tiré au sort est dévoilé au joueur.*/
 		
-		String tirage = tirageDuMot();
-		String motMelange = motMelange(tirage);
-		affichageTirage(motMelange);
-		
-		Scanner s = new Scanner(System.in);
-		String saisie = s.nextLine();
-		
-		controleSaisie(tirage, saisie);
-
-	};
-	
-
+		jeu();
+	}
 	
 	/**
 	 * Fonction qui retourne le mot tiré au sort.
@@ -98,5 +88,31 @@ public class maximo_1 {
 		} else {
 			System.out.printf("%s est une mauvaise réponse. Le mot était : %s", saisie, mot);
 		}
+	}
+	
+	private static void jeu() {
+		String tirage = tirageDuMot();
+		String motMelange = motMelange(tirage);
+		String saisie = "";
+		affichageTirage(motMelange);
+		
+		Scanner s = new Scanner(System.in);
+		
+		int test = 0;
+
+		do {
+			saisie = s.nextLine();
+			if (saisie.length() != tirage.length()) {
+				test = 0;
+				System.out.printf("Le nombre de lettres ne correspond pas au tirage.%n"
+						+ "Réessayez : ");
+			} else {
+				test = 1;
+			}
+			
+		} while (test == 0);
+		s.close();
+		
+		controleSaisie(tirage, saisie);
 	}
 }
