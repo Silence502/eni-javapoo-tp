@@ -25,9 +25,6 @@ public class maximo_1 {
 		
 		menu();
 		jeu();
-		
-		
-		
 	}
 	
 	/**
@@ -41,7 +38,7 @@ public class maximo_1 {
 		String[] dicoTab = new String[22506];
 		int randomTab = (int) (Math.random() * 22506 + 1);
 		
-		try (FileInputStream dico = new FileInputStream("D:/workspace/Module_1_TP/src/dictionnaire.txt"); 
+		try (FileInputStream dico = new FileInputStream("D:/workspace/Module_1_TP/src/fr/eni/tpmod1/dictionnaire.txt"); 
 				Scanner s = new Scanner(dico)) {
 			while (s.hasNextLine())
 				for (int i = 0; i < dicoTab.length; i++) {
@@ -89,9 +86,6 @@ public class maximo_1 {
 		char lettre1 = 0;
 		char lettre2 = 0;
 		boolean test = false;
-		
-		
-		
 		
 		do {
 			
@@ -151,7 +145,6 @@ public class maximo_1 {
 				}
 			}
 		} while (test == false);
-		
 	}
 	
 	/**
@@ -200,7 +193,6 @@ public class maximo_1 {
 				break;
 			}
 		} while (recommencer == false);
-		
 		s.close();
 	}
 }
