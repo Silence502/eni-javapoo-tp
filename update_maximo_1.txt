@@ -1,0 +1,7 @@
+Update 0.1 :
+	- Ajout d'un menu de démarrage dans une procédure
+	- Ajout de la possibilité de rejouer ou quitter le jeu
+	- Possibilité d'abandonner ou de retenter sa chance après un échec
+	- Affichage correct des mauvaises lettres et affichage du nombre de
+		caractères attendu
+	- Amélioration de l'affichage
